@@ -1,0 +1,85 @@
+name: Validate and Promote Public v0.1.0
+
+on:
+  push:
+    branches: ["feat/public-v0.1.0"]
+    paths: [".github/workflows/promote-public-v010.yml"]
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    name: Gate Python ${{ matrix.python-version }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - name: Checkout candidate
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Generate deterministic prompt manifest
+        run: python scripts/generate_prompt_manifest.py --root .
+      - name: Compile
+        run: python -m compileall -q src scripts tests
+      - name: Unit and integration tests
+        env:
+          PYTHONPATH: src
+        run: python -m unittest discover -s tests -v
+      - name: Zero-network acceptance path
+        env:
+          PYTHONPATH: src
+        run: python scripts/reportctl.py self-test --root .
+
+  promote:
+    name: Create clean release commit on main
+    needs: test
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout candidate
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: "3.13"
+      - name: Build pinned manifest
+        run: |
+          python scripts/generate_prompt_manifest.py --root .
+          cp config/prompt-manifest.json /tmp/prompt-manifest.json
+      - name: Squash candidate into a clean main commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git reset --hard
+          git fetch origin main feat/public-v0.1.0
+          git checkout -B drf-promotion origin/main
+          git merge --squash origin/feat/public-v0.1.0
+          rm -f .github/workflows/bootstrap-prompt-manifest.yml
+          rm -f .github/workflows/generate-prompt-manifest-once.yml
+          rm -f .github/workflows/promote-public-v010.yml
+          cp /tmp/prompt-manifest.json config/prompt-manifest.json
+          cat > docs/ACCEPTANCE.md <<EOF
+          # Acceptance receipt
+
+          - Release: 0.1.0
+          - Candidate commit: ${GITHUB_SHA}
+          - Promotion gate: Python 3.11, 3.12 and 3.13
+          - Checks: compile, unit/integration suite, prompt digest generation, public-tree scan, deterministic fixture rendering, static HTML validation and atomic archive creation
+          - Network required by test path: no
+
+          This receipt proves the automated structural gate passed before promotion. It does not certify real-world source accuracy, editorial quality, legal clearance or production reliability.
+          EOF
+          git add -A
+          git commit -m "release: daily-report-factory v0.1.0"
+          git push origin HEAD:main
