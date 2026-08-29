@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/daily-report-factory/publications.schema.json",
+  "title": "Daily Report Factory Publication Catalog",
+  "type": "object",
+  "required": ["schema_version", "catalog_version", "publications"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "catalog_version": {"type": "string"},
+    "publications": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["publication_id", "title", "title_zh", "mode", "page_count", "min_sections", "max_sections", "max_source_age_days", "prompt_path", "contract_version", "status", "description"]
+      }
+    }
+  },
+  "additionalProperties": false
+}
