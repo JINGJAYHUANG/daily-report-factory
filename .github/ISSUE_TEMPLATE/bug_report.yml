@@ -1,0 +1,26 @@
+name: Bug report
+description: Report a reproducible contract, rendering, validation or archive failure
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: failure
+    attributes:
+      label: Failure
+      description: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal reproduction
+      description: Use synthetic or public-safe data only.
+    validations:
+      required: true
+  - type: textarea
+    id: boundary
+    attributes:
+      label: Security and privacy boundary
+      description: Confirm that no credentials, personal data or proprietary content are included.
+    validations:
+      required: true
