@@ -1,0 +1,61 @@
+{
+  "algorithm": "sha256",
+  "manifest_version": "0.1.0",
+  "prompts": [
+    {
+      "contract_version": "1.0.0",
+      "path": "prompts/ai-alpha-daily.md",
+      "publication_id": "ai-alpha-daily",
+      "sha256": "c373870b02321b762a90618d5763bd246477f313ea9c49dee8e6068e51895634"
+    },
+    {
+      "contract_version": "1.0.0",
+      "path": "prompts/daily-capability.md",
+      "publication_id": "daily-capability",
+      "sha256": "bae34f371f62f90b9ba391e35ac79e76e96944fb6787f1a7f3224062aa5a2de4"
+    },
+    {
+      "contract_version": "1.0.0",
+      "path": "prompts/eqiq-micro-research-daily.md",
+      "publication_id": "eqiq-micro-research-daily",
+      "sha256": "e3f7fa76ea8adfcd5a961608025c6af676cd9bc3b00d9791df8362360eddfa9c"
+    },
+    {
+      "contract_version": "1.0.0",
+      "path": "prompts/global-business-opportunity-daily.md",
+      "publication_id": "global-business-opportunity-daily",
+      "sha256": "d927cba86a8995e070b701ec72c4d4c470615e31c58290d20f2e42ae2c264333"
+    },
+    {
+      "contract_version": "1.0.0",
+      "path": "prompts/global-economic-daily.md",
+      "publication_id": "global-economic-daily",
+      "sha256": "f70785cad3853fc1ba8872c054e431be2e4b91f4f69ccfefca845672543305de"
+    },
+    {
+      "contract_version": "1.0.0",
+      "path": "prompts/history-insights-daily.md",
+      "publication_id": "history-insights-daily",
+      "sha256": "6e5a0b62067585128b79f9992fec33f592f536049e8f8baaf5e0d45bf49e8379"
+    },
+    {
+      "contract_version": "1.0.0",
+      "path": "prompts/learning-from-history.md",
+      "publication_id": "learning-from-history",
+      "sha256": "9e9fad9da66e6caec7962eb1a41db73be1f5bcef7d6a25f2eef132bfa7497bb5"
+    },
+    {
+      "contract_version": "1.0.0",
+      "path": "prompts/non-economic-global-intelligence.md",
+      "publication_id": "non-economic-global-intelligence",
+      "sha256": "22bedf8cb89be6aa945feeb060ad9372d46bc23b963c9c307a0ce2ec9b50da3b"
+    },
+    {
+      "contract_version": "1.0.0",
+      "path": "prompts/policy-intelligence-daily.md",
+      "publication_id": "policy-intelligence-daily",
+      "sha256": "c95eaa6c950eff6c4861e0a412554719d035f55c966135d2b76ca767f719940e"
+    }
+  ],
+  "schema_version": "1.0"
+}

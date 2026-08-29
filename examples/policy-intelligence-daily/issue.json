@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "publication_id": "policy-intelligence-daily",
+  "issue_id": "policy-intelligence-daily-2030-01-15-fixture",
+  "issue_date": "2030-01-15",
+  "generated_at": "2030-01-15T00:00:00Z",
+  "language": "en",
+  "timezone": "UTC",
+  "title": "Synthetic Policy Implementation Brief",
+  "subtitle": "A seven-page fixture for primary-source status, transmission logic and implementation monitoring.",
+  "status": "fixture",
+  "synthetic": true,
+  "sections": [
+    {"id": "page-1", "kind": "cover", "heading": "Synthetic policy decision map", "summary": "A fictional policy package is introduced with its legal status and effective date.", "evidence": [{"claim": "Synthetic evidence statement 1 is linked to the fictional primary document.", "source_ids": ["SYN-POL-001"]}], "implications": ["Illustrative implication 1; not legal advice."], "actions": ["Illustrative verification action 1."]},
+    {"id": "page-2", "kind": "reading-map", "heading": "What the document actually changes", "summary": "The fixture separates enacted text from commentary and implementation assumptions.", "evidence": [{"claim": "Synthetic evidence statement 2 is linked to the fictional primary document.", "source_ids": ["SYN-POL-001"]}], "implications": ["Illustrative implication 2; not legal advice."], "actions": ["Illustrative verification action 2."]},
+    {"id": "page-3", "kind": "snapshot", "heading": "Affected parties and obligations", "summary": "A stakeholder map records implementers, regulated entities and excluded groups.", "evidence": [{"claim": "Synthetic evidence statement 3 is linked to the fictional primary document.", "source_ids": ["SYN-POL-001"]}], "implications": ["Illustrative implication 3; not legal advice."], "actions": ["Illustrative verification action 3."]},
+    {"id": "page-4", "kind": "analysis", "heading": "Transmission mechanism", "summary": "The hypothetical rule travels through reporting, procurement and compliance workflows.", "evidence": [{"claim": "Synthetic evidence statement 4 is linked to the fictional primary document.", "source_ids": ["SYN-POL-001"]}], "implications": ["Illustrative implication 4; not legal advice."], "actions": ["Illustrative verification action 4."]},
+    {"id": "page-5", "kind": "comparison", "heading": "Alternative interpretations", "summary": "Two plausible readings are compared without pretending the ambiguity is resolved.", "evidence": [{"claim": "Synthetic evidence statement 5 is linked to the fictional primary document.", "source_ids": ["SYN-POL-001"]}], "implications": ["Illustrative implication 5; not legal advice."], "actions": ["Illustrative verification action 5."]},
+    {"id": "page-6", "kind": "watchlist", "heading": "Implementation signals", "summary": "Auditable dates, notices and enforcement metrics define the monitoring plan.", "evidence": [{"claim": "Synthetic evidence statement 6 is linked to the fictional primary document.", "source_ids": ["SYN-POL-001"]}], "implications": ["Illustrative implication 6; not legal advice."], "actions": ["Illustrative verification action 6."]},
+    {"id": "page-7", "kind": "conclusion", "heading": "Decision summary and limits", "summary": "The closing page records actions, uncertainties and the need for legal review.", "evidence": [{"claim": "Synthetic evidence statement 7 is linked to the fictional primary document.", "source_ids": ["SYN-POL-001"]}], "implications": ["Illustrative implication 7; not legal advice."], "actions": ["Illustrative verification action 7."]}
+  ],
+  "sources": [
+    {
+      "id": "SYN-POL-001",
+      "title": "Fictional Administrative Notice 2030-01",
+      "publisher": "Example Public Authority",
+      "url": "https://example.com/synthetic/policy-notice",
+      "published_at": "2030-01-14",
+      "checked_at": "2030-01-15",
+      "rights": "Synthetic CC0-style fixture text created for this repository.",
+      "synthetic": true
+    }
+  ],
+  "disclosures": [
+    "The notice, authority, obligations and metrics are entirely synthetic.",
+    "This example is not legal advice and does not describe a real jurisdiction.",
+    "Human review remains required for source meaning, legal status and implementation claims."
+  ]
+}

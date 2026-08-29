@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "publication_id": "ai-alpha-daily",
+  "issue_id": "ai-alpha-daily-2030-01-15-fixture",
+  "issue_date": "2030-01-15",
+  "generated_at": "2030-01-15T00:00:00Z",
+  "language": "en",
+  "timezone": "UTC",
+  "title": "Synthetic AI Infrastructure Brief",
+  "subtitle": "A deterministic fixture used to test evidence links, rendering, layout guards and archival integrity.",
+  "status": "fixture",
+  "synthetic": true,
+  "sections": [
+    {
+      "id": "signal-map",
+      "kind": "reading-map",
+      "heading": "What changed in the synthetic environment",
+      "summary": "Three fictional infrastructure signals are organized by decision relevance rather than novelty.",
+      "evidence": [{"claim": "A synthetic benchmark reports lower queue latency after deterministic batching.", "source_ids": ["SYN-001"]}],
+      "implications": ["Batching policy can matter more than model size in constrained systems."],
+      "actions": ["Reproduce the benchmark before changing a production queue."]
+    },
+    {
+      "id": "mechanism",
+      "kind": "analysis",
+      "heading": "Why the mechanism could matter",
+      "summary": "The fixture separates measured latency from a causal explanation about scheduler behavior.",
+      "evidence": [{"claim": "The synthetic trace records fewer context switches under the revised scheduler.", "source_ids": ["SYN-001", "SYN-002"]}],
+      "implications": ["Operational gains may disappear at different request-size distributions."],
+      "actions": ["Test small, medium and burst workloads independently."]
+    },
+    {
+      "id": "adoption-gate",
+      "kind": "comparison",
+      "heading": "Adoption gate and counter-case",
+      "summary": "A fictional comparison highlights migration cost, observability requirements and rollback design.",
+      "evidence": [{"claim": "The comparison environment has complete rollback receipts for every synthetic deployment.", "source_ids": ["SYN-002"]}],
+      "implications": ["A technically faster path can still be inferior when rollback evidence is weak."],
+      "actions": ["Require a reversible pilot and explicit acceptance metrics."]
+    },
+    {
+      "id": "watch-next",
+      "kind": "watchlist",
+      "heading": "Next signals to verify",
+      "summary": "The issue closes with falsifiable signals rather than an unsupported forecast.",
+      "evidence": [{"claim": "No production deployment or real company performance is represented in this fixture.", "source_ids": ["SYN-001", "SYN-002"]}],
+      "implications": ["The fixture validates system behavior, not an external technology thesis."],
+      "actions": ["Replace synthetic sources with licensed, date-stamped evidence during real editorial work."]
+    }
+  ],
+  "sources": [
+    {
+      "id": "SYN-001",
+      "title": "Deterministic Queue Benchmark",
+      "publisher": "Example Systems Lab",
+      "url": "https://example.com/synthetic/queue-benchmark",
+      "published_at": "2030-01-14",
+      "checked_at": "2030-01-15",
+      "rights": "Synthetic CC0-style fixture text created for this repository.",
+      "synthetic": true
+    },
+    {
+      "id": "SYN-002",
+      "title": "Synthetic Rollback Trace Note",
+      "publisher": "Example Reliability Group",
+      "url": "https://example.com/synthetic/rollback-trace",
+      "published_at": "2030-01-13",
+      "checked_at": "2030-01-15",
+      "rights": "Synthetic CC0-style fixture text created for this repository.",
+      "synthetic": true
+    }
+  ],
+  "disclosures": [
+    "All companies, measurements and sources in this example are synthetic fixtures.",
+    "Structural validation does not establish factual accuracy for a real issue.",
+    "No cross-issue deduplication or persistent editorial memory is claimed."
+  ]
+}
