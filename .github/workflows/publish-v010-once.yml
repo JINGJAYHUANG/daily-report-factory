@@ -1,0 +1,91 @@
+name: Publish v0.1.0 Once
+
+on:
+  push:
+    branches: [main]
+    paths: [".github/workflows/publish-v010-once.yml"]
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout release candidate
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: "3.13"
+      - name: Re-run release gate
+        env:
+          PYTHONPATH: src
+        run: |
+          set -euo pipefail
+          python scripts/generate_prompt_manifest.py --root . --check
+          python -m compileall -q src scripts tests
+          python -m unittest discover -s tests -v
+          python scripts/reportctl.py self-test --root .
+      - name: Remove one-time workflow and create release commit
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/publish-v010-once.yml
+          git commit -m "chore: remove one-time v0.1.0 publisher"
+          git push origin HEAD:main
+      - name: Tag clean release commit
+        run: |
+          set -euo pipefail
+          if git rev-parse -q --verify refs/tags/v0.1.0 >/dev/null; then
+            echo "v0.1.0 already exists"
+          else
+            git tag -a v0.1.0 -m "Daily Report Factory v0.1.0"
+            git push origin v0.1.0
+          fi
+      - name: Build reproducible source archives
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          git archive --format=tar --prefix=daily-report-factory-v0.1.0/ v0.1.0 | gzip -n > dist/daily-report-factory-v0.1.0.tar.gz
+          git archive --format=zip --prefix=daily-report-factory-v0.1.0/ v0.1.0 > dist/daily-report-factory-v0.1.0.zip
+          (cd dist && sha256sum daily-report-factory-v0.1.0.tar.gz daily-report-factory-v0.1.0.zip > SHA256SUMS.txt)
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat > /tmp/release-notes.md <<'EOF'
+          ## Daily Report Factory v0.1.0
+
+          A clean public reconstruction of an evidence-aware daily-publication pipeline.
+
+          ### Included
+
+          - Nine versioned publication contracts.
+          - Deterministic JavaScript-free HTML rendering.
+          - Evidence-link, date, freshness and page-count validation.
+          - Static responsive-layout and active-content guards.
+          - Lock-protected atomic archives and safe tar extraction.
+          - Public-tree secret and PII scanning.
+          - Synthetic paged and long-scroll fixtures.
+          - Python 3.11–3.13 CI and zero-network acceptance path.
+
+          ### Explicit limits
+
+          This release does not browse, call an LLM, certify source truth, provide legal or investment advice, prove browser-perfect visual quality, or claim production reliability. Real publication still requires human source, rights and editorial review.
+          EOF
+          if gh release view v0.1.0 >/dev/null 2>&1; then
+            gh release upload v0.1.0 dist/daily-report-factory-v0.1.0.tar.gz dist/daily-report-factory-v0.1.0.zip dist/SHA256SUMS.txt --clobber
+          else
+            gh release create v0.1.0 \
+              dist/daily-report-factory-v0.1.0.tar.gz \
+              dist/daily-report-factory-v0.1.0.zip \
+              dist/SHA256SUMS.txt \
+              --title "Daily Report Factory v0.1.0" \
+              --notes-file /tmp/release-notes.md \
+              --verify-tag
+          fi
